@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Awis</title>
+    <link rel="stylesheet" href="indtu.css">
+</head>
+<body>
+
+    <!-- Navigation Section -->
+    <nav>
+        <div class="wrapper">
+            <!-- Dropdown diletakkan di pojok kiri sebagai pengganti logo -->
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleMenu()">
+                    View My Work ▼
+                </button>
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="view.html">🎬 Video</a>
+                    <a href="view copy.html">🎨 Design</a>
+                </div>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="https://sites.google.com/view/drive-drive-/halaman-muka">About</a></li>
+                    <li><a href="https://sites.google.com/view/awiss-ppf/halaman-muka">Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-wrapper">
+        <div class="header-content">
+            <!-- Nama kamu bisa ditaruh di sini sebagai headline -->
+            <h1>Video Editor</h1> 
+            <div class="tagline">
+                <h4>Video Editing • Color Grading • Storytelling</h4>
+            </div>
+            
+            <p class="connect-label">Connect With Me</p>
+            
+            <div class="header-image">
+                <a href="https://www.instagram.com/_awisfinside?igsh=ZTdlcGNrN2poYzJv" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+                </a>
+                <a href="https://www.youtube.com/@ArifinNur-p8w" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-wrapper">
+        &copy; 2026 Awis Portfolio
+    </div>
+
+    <!-- Script untuk Dropdown -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("dropdownMenu");
+            menu.classList.toggle("show");
+        }
+
+        // Menutup dropdown jika user klik di luar menu
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
