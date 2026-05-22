@@ -3,11 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Portfolio - Minimalist Dark Mode</title>
-    <link rel="stylesheet" href="vid.css">
+    <title>Video Portfolio - awis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+ 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+        }
+
+        .home-link {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #aaa;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .home-link:hover {
+            color: #fff;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-container::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            background: linear-gradient(to left, #0d0d0d, transparent);
+            pointer-events: none;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 30px;
+            padding-left: 80px;
+            padding-right: 220px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            cursor: grab;
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: 80px;
+        }
+
+        .slider-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-item {
+            min-width: 320px;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #1a1a1a;
+        }
+
+        .video-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+
+        .video-container:hover .video-gif {
+            transform: scale(1.08);
+        }
+
+        .video-title {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .view-more-container {
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #444;
+            border-radius: 12px;
+            color: #aaa;
+        }
+
+        .view-more-container:hover {
+            border-color: #fff;
+            background: #1a1a1a;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* =========================================
+           TAMBAHAN CSS KHUSUS UNTUK MODAL (VIDEO BESAR)
+           ========================================= */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; /* Z-index tinggi biar di atas layar & header */
+            left: 0;
+            top: 0;
+            width: 100vw; 
+            height: 100vh; 
+            background-color: rgba(0, 0, 0, 0.9); /* Latar lebih gelap biar sinematik */
+            backdrop-filter: blur(5px); /* Efek blur di background */
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .modal-content {
+            width: 80%; 
+            max-width: 1000px; 
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: -40px; 
+            top: -40px; 
+            color: white;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 10000;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #ff4444; 
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
 
@@ -24,8 +204,8 @@
             
             <div class="video-item">
                 <div class="video-container">
-                    <a href="https://youtu.be/xE7Tk4EuFdY?si=18-vnGoLZNiXeJUm">
-                        <img src="mqdefault_6s (2).webp" alt="periview" class="video-gif">
+                    <a href="https://youtu.be/xE7Tk4EuFdY?si=18-vnGoLZNiXeJUm" target="_blank">
+                        <img src="mqdefault_6s (2).webp" alt="preview" class="video-gif">
                     </a>
                 </div>
                 <h3 class="video-title">Klik for watch</h3>
@@ -34,35 +214,63 @@
 
             <div class="video-item">
                 <div class="video-container">
-                    <a href="https://youtu.be/ghIP4YB-LIY?si=cDPlWtOJc4_ftAWk">
-                        <img src="mqdefault_6s (1).webp" alt="periview" class="video-gif">
+                    <a href="https://youtu.be/ghIP4YB-LIY?si=cDPlWtOJc4_ftAWk" target="_blank">
+                        <img src="mqdefault_6s (1).webp" alt="preview" class="video-gif">
                     </a>
                 </div>
-                <h3 class="video-title">Klik for wacth</h3>
+                <h3 class="video-title">Klik for watch</h3>
                 <span class="video-number">2</span>
             </div>
 
             <div class="video-item">
                 <div class="video-container">
-                    <a href="https://youtu.be/66xmBfxfg8c?si=I3UTNVm4FozjEynu">
+                    <a href="https://youtu.be/66xmBfxfg8c?si=I3UTNVm4FozjEynu" target="_blank">
                         <img src="mqdefault_6s.webp" alt="Cyberpunk 2077" class="video-gif">
                     </a>
                 </div>
                 <h3 class="video-title">Klik For watch</h3>
                 <span class="video-number">3</span>
             </div>
-             <div class="video-item">
+
+            <div class="video-item">
                 <div class="video-container">
-                    <a href="https://youtu.be/0AVLaj41Zh8?si=wOJU-fnJouUQeoQa">
-                        <img src="mqdefault_6s(3).webp" alt="periview" class="video-gif">
+                    <a href="https://youtu.be/0AVLaj41Zh8?si=wOJU-fnJouUQeoQa" target="_blank">
+                        <img src="mqdefault_6s(3).webp" alt="preview" class="video-gif">
                     </a>
                 </div>
-                <h3 class="video-title">Klik for wacth</h3>
+                <h3 class="video-title">Klik for watch</h3>
                 <span class="video-number">4</span>
             </div>
+            
+            <div class="video-item">
+                <div class="video-container">
+                    <video 
+                        src="givbom.mp4" 
+                        class="video-gif" 
+                        autoplay loop muted playsinline 
+                        style="cursor: pointer;"
+                        onclick="openModal('https://drive.google.com/file/d/1gYB5MXgsqR8eyGMwsjo11MD_vWp74ia1/preview')">
+                    </video>
+                </div>
+                <h3 class="video-title">Klik for watch</h3>
+                <span class="video-number">5</span> </div>
 
+                <div class="video-item">
+                <div class="video-container">
+                    <video 
+                        src="givpetung.mp4" 
+                        class="video-gif" 
+                        autoplay loop muted playsinline 
+                        style="cursor: pointer;"
+                        onclick="openModal('https://drive.google.com/file/d/1g9EwMLLcoZsSQxortWuPNgwKZbSemr-N/preview')">
+                        
+                    </video>
+                </div>
+                <h3 class="video-title">Klik for watch</h3>
+                <span class="video-number">6</span> </div>
+            
             <div class="video-item view-more">
-                <a href="http://www.youtube.com/@ArifinNur-p8w" class="view-more-container">
+                <a href="http://www.youtube.com/@ArifinNur-p8w" class="view-more-container" target="_blank">
                     <div class="view-more-content">
                         <span>View more on YouTube</span>
                         <div class="youtube-icon-placeholder">
@@ -81,5 +289,35 @@
         <div class="footer-right">@Awiss</div>
     </footer>
 
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe src="" id="modal-iframe" allow="autoplay" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openModal(drivePreviewUrl) {
+            var modal = document.getElementById("video-modal");
+            var iframe = document.getElementById("modal-iframe");
+            modal.style.display = "flex";
+            iframe.src = drivePreviewUrl;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("video-modal");
+            var iframe = document.getElementById("modal-iframe");
+            modal.style.display = "none";
+            iframe.src = ""; // Stop video play
+        }
+
+        // Kalau pengunjung klik di area luar video besar, modal ikut ketutup
+        window.onclick = function(event) {
+            var modal = document.getElementById("video-modal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
