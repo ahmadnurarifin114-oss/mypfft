@@ -1,0 +1,319 @@
+/* ================================
+   RESET & BASE
+   ================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f0f0f;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0f0f0f;
+    border-bottom: 1px solid #1f1f1f;
+    padding: 14px 24px;
+}
+
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+}
+
+nav a {
+    font-size: 14px;
+    color: #aaa;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+/* ================================
+   MODAL POP-UP (CSS :target trick)
+   - Default: hidden (opacity 0, pointer-events none)
+   - Saat :target aktif: muncul
+   ================================ */
+.modal {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+}
+
+.modal:target {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Backdrop gelap di belakang modal */
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(6px);
+    cursor: default;
+}
+
+/* Kotak video di tengah */
+.modal-box {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    z-index: 1;
+}
+
+.modal-box iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Tombol tutup × */
+.modal-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #ccc;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #ff4444;
+}
+
+/* ================================
+   MAIN CONTENT
+   ================================ */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+}
+
+/* ================================
+   SECTION TITLE
+   ================================ */
+.section-title {
+    margin-bottom: 28px;
+}
+
+.section-title h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.section-title p {
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+}
+
+/* ================================
+   VIDEO GRID
+   ================================ */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px 16px;
+}
+
+/* ================================
+   VIDEO CARD
+   ================================ */
+.video-card {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+}
+
+/* THUMBNAIL */
+.thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a1a;
+}
+
+.thumbnail img,
+.thumb-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.video-card:hover .thumbnail img,
+.video-card:hover .thumb-video {
+    transform: scale(1.05);
+}
+
+/* PLAY ICON OVERLAY */
+.play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.video-card:hover .play-icon {
+    opacity: 1;
+}
+
+/* CARD INFO */
+.card-info {
+    padding: 10px 2px 0;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f1f1f1;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.card-sub {
+    font-size: 12px;
+    color: #888;
+}
+
+/* ================================
+   VIEW MORE CARD
+   ================================ */
+.view-more-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px dashed #333;
+    background: #111;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.view-more-card:hover .view-more-thumb {
+    border-color: #fff;
+    background: #1a1a1a;
+}
+
+.view-more-text {
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+.site-footer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #444;
+    border-top: 1px solid #1f1f1f;
+}
+
+/* ================================
+   RESPONSIVE — TABLET (3 kolom)
+   ================================ */
+@media (max-width: 1024px) {
+    .video-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ================================
+   RESPONSIVE — MOBILE BESAR (2 kolom)
+   ================================ */
+@media (max-width: 680px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 10px;
+    }
+
+    .section-title h2 {
+        font-size: 18px;
+    }
+
+    .main-content {
+        padding: 20px 16px 48px;
+    }
+
+    .modal-box {
+        width: 95%;
+    }
+
+    .modal-close {
+        top: -38px;
+        font-size: 28px;
+    }
+}
+
+/* ================================
+   RESPONSIVE — MOBILE KECIL (1 kolom)
+   ================================ */
+@media (max-width: 400px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
